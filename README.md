@@ -30,7 +30,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-          // Hardcoded database of products (15 items)
+        
         List<Product> products = new ArrayList<>();
         products.add(new Product("Apple", 10.0, 123));
         products.add(new Product("Bread", 25.0, 65));
@@ -48,10 +48,10 @@ public class Main {
         products.add(new Product("Sugar (1kg)", 40.0, 15));
         products.add(new Product("Salt (1kg)", 20.0, 20));
 
-        // Sort products alphabetically by name
+        
         Collections.sort(products, Comparator.comparing(p -> p.name));
 
-        // Cart for purchases
+        
         List<Purchase> cart = new ArrayList<>();
 
         char moreItems;
@@ -59,7 +59,7 @@ public class Main {
         System.out.println("=== Simple Cashier System ===");
 
         do {
-            // Show product menu with formatted table
+            
             System.out.println("\n===== PRODUCT LIST =====");
             System.out.printf("%-3s %-15s %8s %8s%n", "No", "Item", "Price", "Stock");
             System.out.println("---------------------------------------------");
@@ -69,7 +69,7 @@ public class Main {
             }
 
 }
- // Choose product
+ 
             int choice;
             Product selected = null;
             while (true) {
@@ -88,7 +88,7 @@ public class Main {
                 }
             } 
             
-            // Choose quantity
+            
             int qty;
             while (true) {
                 System.out.printf("Enter quantity of %s: ", selected.name);
