@@ -102,6 +102,24 @@ public class Main {
                 }
             }
 
+            selected.stock -= qty;
+            cart.add(new Purchase(selected, qty));
+            System.out.printf("%d x %s added to cart.%n", qty, selected.name);
+
+            while (true) {
+                System.out.print("Add more items? (Y/N): ");
+                moreItems = sc.next().charAt(0);
+
+                if (moreItems == 'Y' || moreItems == 'y' ||
+                    moreItems == 'N' || moreItems == 'n') {
+                    break;
+                } else {
+                    System.out.println("ERROR: Please enter only 'Y' or 'N'.");
+                }
+            }
+
+        } while (moreItems == 'Y' || moreItems == 'y');
+
         System.out.println("\n===== RECEIPT =====");
         System.out.printf("%-15s %5s %8s %10s%n", "Item", "Qty", "Price", "Total");
         System.out.println("------------------------------------------------");
