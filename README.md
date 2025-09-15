@@ -30,7 +30,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        
+          // Hardcoded database of products (15 items)
         List<Product> products = new ArrayList<>();
         products.add(new Product("Apple", 10.0, 123));
         products.add(new Product("Bread", 25.0, 65));
@@ -48,10 +48,10 @@ public class Main {
         products.add(new Product("Sugar (1kg)", 40.0, 15));
         products.add(new Product("Salt (1kg)", 20.0, 20));
 
-        
+        // Sort products alphabetically by name
         Collections.sort(products, Comparator.comparing(p -> p.name));
 
-        
+        // Cart for purchases
         List<Purchase> cart = new ArrayList<>();
 
         char moreItems;
@@ -59,7 +59,7 @@ public class Main {
         System.out.println("=== Simple Cashier System ===");
 
         do {
-            
+            // Show product menu with formatted table
             System.out.println("\n===== PRODUCT LIST =====");
             System.out.printf("%-3s %-15s %8s %8s%n", "No", "Item", "Price", "Stock");
             System.out.println("---------------------------------------------");
@@ -69,7 +69,7 @@ public class Main {
             }
 
 }
- 
+
             int choice;
             Product selected = null;
             while (true) {
@@ -88,7 +88,6 @@ public class Main {
                 }
             } 
             
-            
             int qty;
             while (true) {
                 System.out.printf("Enter quantity of %s: ", selected.name);
@@ -102,4 +101,31 @@ public class Main {
                     break;
                 }
             }
+
+        System.out.println("\n===== RECEIPT =====");
+        System.out.printf("%-15s %5s %8s %10s%n", "Item", "Qty", "Price", "Total");
+        System.out.println("------------------------------------------------");
+        double grandTotal = 0;
+        for (Purchase p : cart) {
+            double total = p.getTotal();
+            System.out.printf("%-15s %5d %8.2f %10.2f%n",
+                    p.product.name, p.quantity, p.product.price, total);
+            grandTotal += total;
+        }
+        System.out.println("------------------------------------------------");
+        System.out.printf("%-30s %10.2f%n", "GRAND TOTAL:", grandTotal);
+
+        double cash = 0;
+        while (cash < grandTotal) {
+            System.out.print("Enter cash received: ");
+            cash += sc.nextDouble();
+
+            if (cash < grandTotal) {
+                System.out.printf("Insufficient payment. Remaining balance: %.2f%n", grandTotal - cash);
+            }
+        }
+
+        double change = cash - grandTotal;
+        System.out.printf("Change: %.2f%n", change);
+        System.out.println("Thank you for your purchase!");
   
