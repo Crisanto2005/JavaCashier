@@ -1,1 +1,6 @@
 # JavaCashier
+
+public class Cashier{
+
+
+}
