@@ -69,7 +69,39 @@ public class Main {
             }
 
 }
+ // Choose product
+            int choice;
+            Product selected = null;
+            while (true) {
+                System.out.print("Choose a product (number): ");
+                choice = sc.nextInt();
 
+                if (choice >= 1 && choice <= products.size()) {
+                    selected = products.get(choice - 1);
+                    if (selected.stock > 0) {
+                        break;
+                    } else {
+                        System.out.println("ERROR: That product is out of stock. Please pick another.");
+                    }
+                } else {
+                    System.out.println("ERROR: Invalid product choice.");
+                }
+            } 
+            
+            // Choose quantity
+            int qty;
+            while (true) {
+                System.out.printf("Enter quantity of %s: ", selected.name);
+                qty = sc.nextInt();
+
+                if (qty <= 0) {
+                    System.out.println("ERROR: Quantity must be at least 1.");
+                } else if (qty > selected.stock) {
+                    System.out.printf("ERROR: Only %d left in stock.%n", selected.stock);
+                } else {
+                    break;
+                }
+            }
    // Update stock and add to cart
             selected.stock -= qty;
             cart.add(new Purchase(selected, qty));
