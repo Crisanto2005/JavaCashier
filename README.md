@@ -128,4 +128,8 @@ public class Main {
         double change = cash - grandTotal;
         System.out.printf("Change: %.2f%n", change);
         System.out.println("Thank you for your purchase!");
+         
+        sc.close();
+    }
+}
   
